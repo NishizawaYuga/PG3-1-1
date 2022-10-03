@@ -1,20 +1,14 @@
 #include <stdio.h>
 
-template <typename T>
-T Min(T a, T b) {
-	if (a <= b) {
-		return static_cast<T>(a);
+int Recursive(int n) {
+	if (n <= 1) {
+		return (100);
 	}
-		return static_cast<T>(b);
-}
-template <>
-char Min<char>(char a, char b) {
-	return printf("数字以外は代入できません");
+
+	return (Recursive(n - 1) * 2 - 50);
 }
 
 void main() {
-	printf("%d\n", Min<int>(10, 15));
-	printf("%f\n", Min<float>(10, 15));
-	printf("%lf\n", Min<double>(10, 15));
-	printf("%c", Min<char>(10, 15));
+	printf("一般的な賃金体系で5時間：%d\n", 1072 * 5);
+	printf("再起的な賃金体系で5時間：%d", Recursive(5));
 }
