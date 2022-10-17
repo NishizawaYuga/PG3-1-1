@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <functional>
+#include <Windows.h>
 
 typedef void (*pFunc)(int*, int*);
 
@@ -47,6 +48,8 @@ int main(void) {
 	pFunc p;
 	p = Answer;
 	SetTime(p, numbers, answer);
+	std::function<int(int)> judge = [=](int i) {return i * answer; };
+	printf("\nサイコロの出目：%d",judge(rand() % 3 + 1));
 
 	return 0;
 }
