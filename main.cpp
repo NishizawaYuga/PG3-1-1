@@ -1,18 +1,52 @@
 #include <stdio.h>
+#include <functional>
 
-int Recursive(int n) {
-	if (n <= 0) {
-		return (100);
+typedef void (*pFunc)(int*, int*);
+
+//結果発表関数
+void Answer(int* numbers, int* answer) {
+
+	if (numbers == answer) {
+		printf("正解！");
 	}
-	return (Recursive(n - 1) * 2 - 50);
+	else {
+		printf("ハズレ！");
+	}
 }
 
-void main() {
-	int time = 8;
-	int total = 0;
-	printf("一般的な賃金体系で%d時間：%d\n",time, 1072 * time);
-	for (int i = 0; i < time; i++) {
-		total += Recursive(i);
+void SetTime(pFunc p, int numbers, int answer) {
+	Sleep(3);
+
+	//結果発表の関数を呼び出す
+	p(&numbers, &answer);
+}
+
+int main(void) {
+	int numbers;
+	while (1) {
+		printf("奇数か偶数か、数字でお答えください（奇数なら1,偶数なら2)：");
+		scanf_s("%d", &numbers);
+		if (numbers < 1 || numbers > 2) {
+			printf("\n1か2でお答えください\n");
+		}
+		else {
+			break;
+		}
 	}
-	printf("再帰的な賃金体系で%d時間：%d",time, total);
+
+	//結果ランダム生成
+	int answer = rand();
+	if (answer % 2 == 0) {
+		answer = 2;
+	}
+	else if (answer % 2 == 1) {
+		answer = 1;
+	}
+
+	//結果発表
+	pFunc p;
+	p = Answer;
+	SetTime(p, numbers, answer);
+
+	return 0;
 }
