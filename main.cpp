@@ -14,7 +14,7 @@ void create(CELL* head, int val);
 void index(CELL* head);
 
 int main() {
-	int val = 5;
+	int val = 20221031;
 	//先頭のセルの宣言
 	CELL head;
 	head.next = nullptr; //Visual Stdioではnextに何らかの値が入った状態で初期化されるので、nullptrを代入する
@@ -24,7 +24,7 @@ int main() {
 		scanf_s("% d", &val);
 
 		//最後尾にセルを追加
-		create(&head, 3);
+		create(&head, 20221103);
 
 		//リスト一覧の表示
 		index(&head);
@@ -35,7 +35,7 @@ int main() {
 
 //セルを新規作成する関数
 void create(CELL* head, int val) {
-	CELL* cell;
+	CELL *cell;
 	//新規作成するセル分のメモリを確保する
 	cell = (CELL*)malloc(sizeof(CELL));
 
@@ -44,11 +44,11 @@ void create(CELL* head, int val) {
 
 	//最後(最新)のセルのアドレスの1つ目の処理は引数から持ってきた
 	//リストのうち最初のセルのアドレスが該当する
-	while (head->next != nullptr) {
-		head->next = head->next->next;
+	while (&head->next != nullptr) {
+		*head->next = *head->next->next;
 	}
 
-	head->next = cell;
+	*head->next = *cell;
 }
 
 //セルの一覧を表示する関数
