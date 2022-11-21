@@ -1,20 +1,60 @@
 #include <stdio.h>
+#include <stdlib.h>
 
-template <typename T>
-T Min(T a, T b) {
-	if (a <= b) {
-		return static_cast<T>(a);
+//単方向リストの構造体の定義
+typedef struct CELL {
+	int val;
+	struct CELL* next;
+}CELL;
+
+//データを追加する関数のプロトタイプ宣言
+void create(CELL* head, int val);
+
+//一覧を表示する関数のプロトタイプ宣言
+void index(CELL* head);
+
+int main() {
+	int val = 5;
+	//先頭のセルの宣言
+	CELL head;
+	head.next = nullptr; //Visual Stdioではnextに何らかの値が入った状態で初期化されるので、nullptrを代入する
+
+	while (true)
+	{
+		scanf_s("% d", &val);
+
+		//最後尾にセルを追加
+		create(&head, 3);
+
+		//リスト一覧の表示
+		index(&head);
 	}
-		return static_cast<T>(b);
-}
-template <>
-char Min<char>(char a, char b) {
-	return printf("数字以外は代入できません");
+
+	return 0;
 }
 
-void main() {
-	printf("%d\n", Min<int>(10, 15));
-	printf("%f\n", Min<float>(10, 15));
-	printf("%lf\n", Min<double>(10, 15));
-	printf("%c", Min<char>(10, 15));
+//セルを新規作成する関数
+void create(CELL* head, int val) {
+	CELL* cell;
+	//新規作成するセル分のメモリを確保する
+	cell = (CELL*)malloc(sizeof(CELL));
+
+	cell->val = val;
+	cell->next = nullptr;
+
+	//最後(最新)のセルのアドレスの1つ目の処理は引数から持ってきた
+	//リストのうち最初のセルのアドレスが該当する
+	while (head->next != nullptr) {
+		head->next = head->next->next;
+	}
+
+	head->next = cell;
+}
+
+//セルの一覧を表示する関数
+void index(CELL* head) {
+	while (head->next != nullptr) {
+		head->next = head->next->next;
+		printf("%d\n", head->next->val);
+	}
 }
