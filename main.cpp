@@ -9,13 +9,17 @@ typedef struct CELL {
 }CELL;
 
 //データを追加する関数のプロトタイプ宣言
-void create(CELL* head, int val);
+void create(CELL* head, char* word);
 
 //一覧を表示する関数のプロトタイプ宣言
 void index(CELL* head);
 
+//データを削除する関数のプロトタイプ宣言
+void clear(CELL* head);
+
 int main() {
 	char word[100];
+	int val;
 	//先頭のセルの宣言
 	CELL head;
 	head.next = nullptr; //Visual Stdioではnextに何らかの値が入った状態で初期化されるので、nullptrを代入する
@@ -33,7 +37,19 @@ int main() {
 		if (val == 1) {
 			index(&head);
 		}
-		create(&head, val);
+		if (val == 2) {
+			printf("\n追加する要素の値を入力してください\n");
+			scanf_s("%s", word);
+			create(&head, word);
+			printf("\n\n要素""");
+			for (int i = 0; i < strlen(word); i++) {
+				printf("%c", word[i]);
+			}
+			printf("""がリストの最後尾に挿入されました\n");
+		}
+		/*if (val == 3) {
+			clear(&head);
+		}*/
 		printf("\n-------------------------------------------\n");
 		printf("0.初期画面に戻る\n");
 		scanf_s("%d", &val);
@@ -47,12 +63,14 @@ int main() {
 }
 
 //セルを新規作成する関数
-void create(CELL* head, int val) {
+void create(CELL* head, char* word) {
 	CELL* cell;
 	//新規作成するセル分のメモリを確保する
 	cell = (CELL*)malloc(sizeof(CELL));
 
-	cell->val = val;
+	for (int i = 0; i < strlen(word); i++) {
+		cell->word[i] = word[i];
+	}
 	cell->next = nullptr;
 
 	//最後(最新)のセルのアドレスの1つ目の処理は引数から持ってきた
@@ -71,10 +89,11 @@ void index(CELL* head) {
 	printf("要素一覧:{\n");
 	while (head->next != nullptr) {
 		head = head->next;
-		printf(" %d: """);
+		printf(" %d: \"", num);
 		for (int i = 0; i < strlen(head->word); i++) {
 			printf("%c", head->word[i]);
 		}
+		printf("\"");
 		if (head->next != nullptr) {
 			printf(",\n");
 		}
@@ -83,5 +102,11 @@ void index(CELL* head) {
 		}
 		num++;
 	}
-	printf("\n要素数: %d\n",num);
+	printf("\n要素数: %d\n", num);
+}
+
+//セルを削除する関数
+void clear(CELL* head) {
+	CELL* prev;
+	prev = head;
 }
