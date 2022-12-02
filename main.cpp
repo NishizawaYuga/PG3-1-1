@@ -3,9 +3,7 @@
 
 //単方向リストの構造体の定義
 typedef struct CELL {
-	int year;
-	int month;
-	int day;
+	int val;
 	struct CELL* next;
 }CELL;
 
@@ -15,9 +13,6 @@ void create(CELL* head, int val);
 //一覧を表示する関数のプロトタイプ宣言
 void index(CELL* head);
 
-//入力方法が合ってるかチェックする関数
-void inputCheck(CELL* head, int val);
-
 int main() {
 	int val;
 	//先頭のセルの宣言
@@ -26,29 +21,16 @@ int main() {
 
 	while (true)
 	{
-		printf("年月日を入力してください（例：20220101）\n");
+		printf("好きな数字を入力してください\n");
 		scanf_s("%d", &val);
 
-		inputCheck(&head, val);
+		create(&head, val);
+
+		index(&head);
 	}
 
 	system("pause");
 	return 0;
-}
-
-//入力方法が合ってるかチェックする関数
-void inputCheck(CELL* head, int val) {
-
-	if (val / 10000000 < 1 || val / 10000000 > 12) {
-		printf("入力情報が間違っています\n");
-	}
-	else {
-		//最後尾にセルを追加
-		create(head, val);
-
-		//リスト一覧の表示
-		index(head);
-	}
 }
 
 //セルを新規作成する関数
@@ -57,16 +39,7 @@ void create(CELL* head, int val) {
 	//新規作成するセル分のメモリを確保する
 	cell = (CELL*)malloc(sizeof(CELL));
 
-	//年の抽出
-	int year = val / 10000;
-	cell->year = year;
-	//月の抽出
-	int month = val % 10000;
-	month = month / 100;
-	cell->month = month;
-	//日付の抽出
-	int day = val % 100;
-	cell->day = day;
+	cell->val = val;
 	cell->next = nullptr;
 
 	//最後(最新)のセルのアドレスの1つ目の処理は引数から持ってきた
@@ -81,8 +54,13 @@ void create(CELL* head, int val) {
 //セルの一覧を表示する関数
 void index(CELL* head) {
 	printf("\n");
+	printf("[");
 	while (head->next != nullptr) {
 		head = head->next;
-		printf("%d/%d/%d\n", head->year, head->month, head->day);
+		printf("%d", head->val);
+		if (head->next != nullptr) {
+			printf(",");
+		}
 	}
+	printf("]/\n");
 }
