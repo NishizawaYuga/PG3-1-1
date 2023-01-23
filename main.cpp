@@ -14,12 +14,12 @@ void Answer(int* numbers, int* answer) {
 	}
 }
 
-void SetTime(pFunc p, int numbers, int answer) {
+/*void SetTimeOut(pFunc p, int numbers, int answer) {
 	//Sleep(2400);
 
 	//結果発表の関数を呼び出す
 	p(&numbers, &answer);
-}
+}*/
 
 int main(void) {
 	int numbers;
@@ -47,7 +47,9 @@ int main(void) {
 	pFunc p;
 	p = Answer;
 	//SetTime(p, numbers, answer);
-	[&]() {Sleep(2400);p(&numbers, &answer); }();
+	//[&]() {Sleep(2400);p(&numbers, &answer); }();
+	std::function<void(int)> timeOut = [&](int i) {Sleep(i); p(&numbers, &answer); };
+	timeOut(2400);
 	std::function<int(int)> judge = [=](int i) {return i * answer; };
 	printf("\nサイコロの出目：%d",judge(rand() % 3 + 1));
 
