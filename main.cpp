@@ -4,7 +4,7 @@ using namespace std;
 
 //‰w–¼
 struct StationName {
-	char stationName[30][20] = {
+	char stationName[29][20] = {
 		"Tokyo","Kanda","Akihabara","Okachimachi","Ueno",
 		"Uguisudani","Nippori","Tabata","Komagome","Sugamo",
 		"Otsuka","Ikebukuro","Mejiro","Takadanobaba","Shin-Okubo",
