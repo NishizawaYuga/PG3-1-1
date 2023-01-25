@@ -7,38 +7,25 @@ using namespace std;
 int Enemy::enemyCount;
 
 int main() {
+	//s“®
 	int move = 0;
 	Enemy* enemy1 = new Enemy;
-	printf("“G%d‚ªŒ»‚ê‚½I\n", Enemy::enemyCount);
 	Enemy* enemy2 = new Enemy;
-	printf("“G%d‚ªŒ»‚ê‚½I\n", Enemy::enemyCount);
 	Enemy* enemy3 = new Enemy;
-	printf("“G%d‚ªŒ»‚ê‚½I\n", Enemy::enemyCount);
+	printf("“G‚ªŒ»‚ê‚½I\n");
 
 	while (Enemy::enemyCount) {
-		printf("\n‚Ç‚¤‚·‚éH\n");
-		printf("1.“G1‚ğUŒ‚‚·‚é\n");
-		printf("2.“G2‚ğUŒ‚‚·‚é\n");
-		printf("3.“G3‚ğUŒ‚‚·‚é\n");
-		printf("4.‰½‚à‚µ‚È‚¢\n");
-		printf("“G‚Ì”F%d\n",Enemy::enemyCount);
+		printf("“G‚Ì”F%d\n", Enemy::enemyCount);
+		printf("0‚ğ“ü—Í‚·‚é‚Æ“G‚ª‘S–Å‚·‚é\n");
 		scanf_s("%d", &move);
 
-		if (move == 1) {
+		if (move == 0) {
 			delete enemy1;
-		}
-		else if (move == 2) {
 			delete enemy2;
-		}
-		else if (move == 3) {
 			delete enemy3;
-		}
-		else if (move == 4) {
-			//‰½‚à‚µ‚È‚¢‚Ì‚Å‚»‚Ì‚Ü‚ÜÅ‰‚Ö
 		}
 	}
 	printf("“G‚ğ‘S‚Ä“|‚µ‚½I\n");
-	printf("“G‚Ì”F%d\n", Enemy::enemyCount);
 
 	system("pause");
 	return 0;
