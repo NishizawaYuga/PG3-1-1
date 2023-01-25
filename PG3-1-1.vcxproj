@@ -139,8 +139,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Circle.cpp" />
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Rectangle.cpp" />
     <ClCompile Include="SceneManager.cpp" />
   </ItemGroup>
   <ItemGroup>
