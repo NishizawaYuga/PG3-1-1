@@ -3,6 +3,7 @@
 #include <Windows.h>
 
 typedef void (*pFunc)(int*, int*);
+typedef void (*dFunc)(pFunc*, int);
 
 //結果発表関数
 void Answer(int* numbers, int* answer) {
@@ -23,6 +24,7 @@ void Answer(int* numbers, int* answer) {
 
 int main(void) {
 	int numbers;
+	int time;
 	while (1) {
 		printf("奇数か偶数か、数字でお答えください（奇数なら1,偶数なら2)：");
 		scanf_s("%d", &numbers);
@@ -48,8 +50,8 @@ int main(void) {
 	p = Answer;
 	//SetTime(p, numbers, answer);
 	//[&]() {Sleep(2400);p(&numbers, &answer); }();
-	std::function<void(int)> timeOut = [&](pFunc p,int i) mutable {Sleep(i); p(&numbers, &answer); };
-	timeOut(2400); 
+	std::function<void(pFunc,int)> timeOut = [&](pFunc p, int i) mutable {Sleep(i); p(&numbers, &answer); };
+	timeOut(p,2400); 
 	std::function<int(int)> judge = [=](int i) {return i * answer; };
 	printf("\nサイコロの出目：%d",judge(rand() % 3 + 1));
 
