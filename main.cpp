@@ -50,10 +50,14 @@ int main(void) {
 	p = Answer;
 	//SetTime(p, numbers, answer);
 	//[&]() {Sleep(2400);p(&numbers, &answer); }();
-	std::function<void(pFunc,int)> timeOut = [&](pFunc p, int i) mutable {Sleep(i); p(&numbers, &answer); };
-	timeOut(p,2400); 
+	std::function<void(pFunc, int)> SetTimeOut = [&](pFunc p, int i)
+	{
+		Sleep(i);
+		p(&numbers, &answer);
+	};
+	SetTimeOut(p, 2400);
 	std::function<int(int)> judge = [=](int i) {return i * answer; };
-	printf("\nサイコロの出目：%d",judge(rand() % 3 + 1));
+	printf("\nサイコロの出目：%d", judge(rand() % 3 + 1));
 
 	return 0;
 }
