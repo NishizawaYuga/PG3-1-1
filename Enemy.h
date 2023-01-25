@@ -2,31 +2,33 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-class Enemy {
-protected:
-public:
-	static int enemyCount;
-	Enemy() { enemyCount++; }
-	~Enemy() {
-		if (enemyCount != 0) { enemyCount = 0;
-		printf("“G‚ğ“|‚µ‚½I\n");
-		}
-		else {
-			printf("“G‚ğ“|‚µ‚½I\n");
-			delete this; }
-	}
-};
+//class Enemy {
+//protected:
+//public:
+//	static int enemyCount;
+//	Enemy() { enemyCount++; }
+//	~Enemy() {
+//		if (enemyCount != 0) { enemyCount = 0;
+//		printf("“G‚ğ“|‚µ‚½I\n");
+//		}
+//		else {
+//			printf("“G‚ğ“|‚µ‚½I\n");
+//			delete this; }
+//	}
+//};
 
 //ƒƒ“ƒoŠÖ”ƒ|ƒCƒ“ƒ^
-class Enemy2 {
+class Enemy {
 public:
+	//ó‘Ô‘JˆÚ
+	void ChangeFhase(int number);
+private:
 	//‹ßÚ
 	void Melee();
 	//ËŒ‚
 	void Shooting();
 	//—£’E
 	void Secession();
-private:
 	//ƒƒ“ƒoŠÖ”ƒ|ƒCƒ“ƒ^‚Ìƒe[ƒuƒ‹
-	static void (Enemy2::* spFuncTable[])();
+	static void (Enemy::* spFuncTable[])();
 };
