@@ -38,16 +38,16 @@ int main() {
 		create(insertCell, name.stationName[i]);
 	}
 
-	list<int> num{ 0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26 };
+	list<CELL> Head;
 
 	printf("until 1970\n");
-	for (list<int>::iterator itr = num.begin(); itr != num.end(); itr++) {
+	for (list<int>::iterator itr = Head.begin(); itr != Head.end(); itr++) {
 			insertCell = getInsertCellAddress(&head, *itr);
 			create(insertCell, name.stationName[*itr]);
 	}
 	index(&head,26);
 	printf("\nuntil 2019\n");
-	for (list<int>::iterator itr = num.begin(); itr != num.end(); itr++) {
+	for (list<int>::iterator itr = Head.begin(); itr != Head.end(); itr++) {
 		if (*itr == 7) {
 			insertCell = getInsertCellAddress(&head, *itr);
 			create(insertCell, name.stationName[27]);
@@ -56,7 +56,7 @@ int main() {
 	}
 	index(&head, 27);
 	printf("\nsince 2020\n");
-	for (list<int>::iterator itr = num.begin(); itr != num.end(); itr++) {
+	for (list<int>::iterator itr = Head.begin(); itr != Head.end(); itr++) {
 		if (*itr == 23) {
 			insertCell = getInsertCellAddress(&head, *itr);
 			create(insertCell, name.stationName[28]);
