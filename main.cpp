@@ -12,13 +12,7 @@ typedef struct cell
 
 //‰w–¼
 struct StationName {
-	char stationName[29][20] = {
-		"Tokyo","Kanda","Akihabara","Okachimachi","Ueno",
-		"Uguisudani","Nippori","Tabata","Komagome","Sugamo",
-		"Otsuka","Ikebukuro","Mejiro","Takadanobaba","Shin-Okubo",
-		"Shinjuku","Yoyogi","Harajuku","Ebisu","Meguro","Gotanda",
-		"Osaki","Shinagawa","Tamachi","Hamamatsucho","Shimbashi",
-		"Yurakucho","Nishi-Nippori","Takanawa-GateWay" };
+	
 };
 
 void create(CELL* currenCell, char* name);
@@ -26,6 +20,14 @@ void index(CELL* endCell,int num);
 CELL* getInsertCellAddress(CELL* endCELL, int iterator);
 
 int main() {
+	char stationName[29][20] = {
+		"Tokyo","Kanda","Akihabara","Okachimachi","Ueno",
+		"Uguisudani","Nippori","Tabata","Komagome","Sugamo",
+		"Otsuka","Ikebukuro","Mejiro","Takadanobaba","Shin-Okubo",
+		"Shinjuku","Yoyogi","Harajuku","Ebisu","Meguro","Gotanda",
+		"Osaki","Shinagawa","Tamachi","Hamamatsucho","Shimbashi",
+		"Yurakucho","Nishi-Nippori","Takanawa-GateWay" };
+
 	StationName name;
 	CELL head;
 	head.next = nullptr;
@@ -35,7 +37,7 @@ int main() {
 
 	for (int i = 0; i < 26; i++) {
 		insertCell = getInsertCellAddress(&head, i);
-		create(insertCell, name.stationName[i]);
+		create(insertCell, stationName[i]);
 	}
 
 	list<CELL> Head;
@@ -43,14 +45,14 @@ int main() {
 	printf("until 1970\n");
 	for (list<int>::iterator itr = Head.begin(); itr != Head.end(); itr++) {
 			insertCell = getInsertCellAddress(&head, *itr);
-			create(insertCell, name.stationName[*itr]);
+			create(insertCell, stationName[*itr]);
 	}
 	index(&head,26);
 	printf("\nuntil 2019\n");
 	for (list<int>::iterator itr = Head.begin(); itr != Head.end(); itr++) {
 		if (*itr == 7) {
 			insertCell = getInsertCellAddress(&head, *itr);
-			create(insertCell, name.stationName[27]);
+			create(insertCell, stationName[27]);
 			++itr;
 		}
 	}
@@ -59,7 +61,7 @@ int main() {
 	for (list<int>::iterator itr = Head.begin(); itr != Head.end(); itr++) {
 		if (*itr == 23) {
 			insertCell = getInsertCellAddress(&head, *itr);
-			create(insertCell, name.stationName[28]);
+			create(insertCell, stationName[28]);
 			++itr;
 		}
 	}
