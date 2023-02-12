@@ -1,6 +1,4 @@
 #pragma once
-#include <stdlib.h>
-#include <list>
 #include <iostream>
 #include "manager.h"
 using namespace std;
@@ -8,7 +6,7 @@ using namespace std;
 //タスクデータ
 struct TaskData {
 	//タスクid
-	string id;
+	int id;
 	//担当者
 	string managerName;
 	//タスク名
@@ -36,9 +34,11 @@ public:
 	void DeleteTask();
 	//タスク閲覧
 	void BrowseTask();
-private:
 	//タスク変更
 	void ChangeTask(int taskID, Manager managerData);
+	//リスト表示
+	void ViewList();
+private:
 	//日付入力
 	void InputDate(int taskID);
 	//優先度表示

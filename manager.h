@@ -1,12 +1,11 @@
 #pragma once
-#include <stdlib.h>
 #include <iostream>
 using namespace std;
 
 //担当者データ
 struct DataManager {
 	//担当者ID
-	string id;
+	int id;
 	//担当者名
 	string name;
 	//クラス
@@ -24,11 +23,12 @@ public:
 	void DeleteManager();
 	//担当者データ閲覧
 	void BrowseData();
-	//担当者データアクセス
-	DataManager AccessData(int num);
-private:
 	//データ変更
 	void ChangeManagerData(int changeID);
+	//リスト表示
+	void ViewList();
+	//担当者データアクセス
+	DataManager AccessData(int num);
 private:
 	//担当者格納
 	DataManager managerData[1000];
