@@ -36,7 +36,4 @@ private:
 	int instructionsNum = 0;
 	//データ格納数
 	const int dataNum = 1000;
-	//クラス認証（一致するもののみ通すようにするため）
-	const char classNum[4] = { 1,2,3,4 };
-	const char classChar[5] = "ABCD";
 };

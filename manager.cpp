@@ -1,5 +1,4 @@
 #include "manager.h"
-//#include <fstream>
 
 void Manager::CreateManager()
 {
